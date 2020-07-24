@@ -118,8 +118,9 @@ const updateFunc = {
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
 	TEMP: data => {
-		if (Number(data) > 25 && Number($('#airTemperature').text()) >= 25) {
-			$('#airTemperatureText').text('Too Much!');
+		templimit = localStorage.getItem('temperature-limit');
+		if (Number(data) > templimit) {
+			$('#airTemperatureText').text('HOT!');
 		}
 		$('#airTemperature').text(data);
 	},
