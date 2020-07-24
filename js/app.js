@@ -220,7 +220,7 @@ $(document).ready(() => {
 	
 	// Settings view, temp limit change:
 	$('#temperature-limit').on('input', () => {
-		localStorage.setItem('tempLimit',$('#api-key').val().trim());
+		localStorage.setItem('tempLimit',$('#temperature-limit').val().trim());
 	});
 
 	// Start view, start tracking:
