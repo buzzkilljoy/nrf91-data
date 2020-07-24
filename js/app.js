@@ -119,9 +119,7 @@ const updateFunc = {
 	},
 	TEMP: data => {
 		if (Number(data) > 25 && Number($('#airTemperature').text()) >= 25) {
-			showToast('Too Hot!', '5 seconds ago', 'Do something.','success',15000);
-			$('#cost').text('$0');
-			$('#costText').text('Too Much!');
+			$('#airTemperatureText').text('Too Much!');
 		}
 		$('#airTemperature').text(data);
 	},
