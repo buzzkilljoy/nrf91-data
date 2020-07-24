@@ -118,9 +118,12 @@ const updateFunc = {
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
 	TEMP: data => {
-		templimit = localStorage.getItem('temperature-limit');
+		templimit = localStorage.getItem('tempLimit');
 		if (Number(data) > templimit) {
 			$('#airTemperatureText').text('HOT!');
+		}
+		if (Number(data) < templimit) {
+			$('#airTemperatureText').text('OK');
 		}
 		$('#airTemperature').text(data);
 	},
@@ -135,7 +138,7 @@ const updateFunc = {
 	}
 }
 
-function orderPizza() {
+function startTracking() {
 	// stop previous intervals if there was an order already
 	clearInterval(counterInterval);
 	clearInterval(requestInterval);
@@ -190,7 +193,7 @@ $(document).ready(() => {
 	$('.view-btn').click(({ target }) => {
 		const id = target.id.replace('Btn', '');
 
-		['splash', 'order', 'track', 'settings']
+		['splash', 'start', 'track', 'settings']
 			.filter(key => key !== id)
 			.forEach(key => {
 				$(`#${key}View`).removeClass('d-flex').addClass('d-none');
@@ -214,16 +217,14 @@ $(document).ready(() => {
 		localStorage.setItem('apiKey', api.accessToken);
 		loadDeviceNames();
 	});
+	
+	// Settings view, temp limit change:
+	$('#temperature-limit').on('input', () => {
+		localStorage.setItem('tempLimit',$('#api-key').val().trim());
+	});
 
-	// Order view, start ordering:
-	$('#orderView a').click(({ target }) => {
-		orderPizza();
-		showToast(target.dataset.pizzaName,
-			'1 second ago',
-			'Your order was received and the Pizza is on its way. '
-			+ 'The Pizza is free if it is too late, too cold, or dropped.',
-			'success',
-			15000,
-		);
+	// Start view, start tracking:
+	$('#startView a').click(({ target }) => {
+		startTracking();
 	});
 });

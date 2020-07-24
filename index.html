@@ -35,13 +35,14 @@
 		<div class="d-flex flex-row align-items-center">
 			<h5 class="font-weight-bold">nRF Data</h5>
 		</div>
-		<h6><a id="orderBtn" class="view-btn nrf-light-blue">START</a></h6>
+		<h6><a id="startBtn" class="view-btn nrf-light-blue">START</a></h6>
 		<h6><a id="trackBtn" class="view-btn nrf-light-blue">TRACK</a></h6>
 		<img id="settingsBtn" src="images/settings_icon.svg" class="view-btn settings-icon">
 	</div>
 
 	<!-- Order view -->
-	<div id="orderView" class="d-none align-items-center whole-width main flex-fill flex-column">
+	<div id="startView" class="d-none align-items-center whole-width main flex-fill flex-column">
+		<div id="leaflet-map"></div>
 		<div class="card w-75 mb-4 rounded-sm">
 			<img src="images/pizza_2.png" class="card-img-top" alt="...">
 			<div class="card-body">
