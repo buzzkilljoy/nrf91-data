@@ -17,7 +17,8 @@ Please check out these resources for more details on working with the Device API
 * Connect to any device you have running in nRF Connect for Cloud
 * Read and display GPS position
 * Read and display temperature
-* Read and display flip data (orientation)
+* Read and display humidity
+* Read and display air quality
 
 The relevant code for connecting to the REST API is available in `cloud-api.js`. The code for parsing data is available in `app.js`.
 
@@ -36,10 +37,8 @@ If you can see data from your Thingy:91 being published in nRF Connect for Cloud
 4. Paste the API Key
 5. Select your device in the dropdown menu
 
-![Animation of nRF Pizza setup](https://github.com/NordicPlayground/nrf91-pizza/blob/master/images/nrfpizza_animation_2.gif)
-
 ## Limitations
-The app has only been tested on iOS Safari browser.
+The app has only been tested on iOS Safari browser and the Linux Firefox browser.
 
 ## Third-party licenses
 * **Leaflet** - [BSD 2-Clause "Simplified" License](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
