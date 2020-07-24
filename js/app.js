@@ -126,8 +126,10 @@ const updateFunc = {
 		$('#airTemperature').text(data);
 	AIR_QUAL: data => {
 		$('#airQuality').text(data);
+	},
 	AIR_PRESS: data => {
 		$('#airPressure').text(data);
+	},
 	HUMID: data => {
 		$('#airHumidity').text(data);
 	}
