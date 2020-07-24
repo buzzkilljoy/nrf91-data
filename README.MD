@@ -1,9 +1,6 @@
-<p align="center">
-  <img src="https://github.com/NordicPlayground/nrf91-pizza/blob/master/images/nrf_pizza_logo_small.png">
-</p>
-
 ## Introduction
-This repository contains source code for the nRF91 Pizza web application which is [shown in the following video](https://youtu.be/y7-eSOqcHYU). The main purpose of the application is to demonstrate how to pull data from nRF Cloud with the Device REST API.
+This repository contains source code for the nRF91 Data web application, based on the nRF91 Pizza web application. 
+The main purpose of the application is to demonstrate how to pull data from nRF Cloud with the Device REST API.
 
 As a developer, this means you have a quick way of displaying near-live data from your Thingy:91 in a custom interface. There is no need to write firmware or cloud code for your cellular IoT prototype.
 
@@ -34,17 +31,15 @@ In order to use this web application you must first set up your Thingy:91 and co
 
 If you can see data from your Thingy:91 being published in nRF Connect for Cloud you are ready for the next steps:
 1. Copy your API Key from nRF Connect for Cloud - [https://nrfcloud.com/#/account](https://nrfcloud.com/#/account) 
-2. Open the live demo web app - [https://nordicplayground.github.io/nrf91-pizza/](https://nordicplayground.github.io/nrf91-pizza/)
+2. Open the live demo web app - [https://buzzkilljoy.github.io/nrf91-data/](https://buzzkilljoy.github.io/nrf91-data/)
 3. Click the gears icon in the top right corner
 4. Paste the API Key
 5. Select your device in the dropdown menu
-6. Select the Order tab
-7. Select any Pizza
 
 ![Animation of nRF Pizza setup](https://github.com/NordicPlayground/nrf91-pizza/blob/master/images/nrfpizza_animation_2.gif)
 
 ## Limitations
-The app has only been tested on Chrome browsers in Windows and Android devices.
+The app has only been tested on iOS Safari browser.
 
 ## Third-party licenses
 * **Leaflet** - [BSD 2-Clause "Simplified" License](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
@@ -52,4 +47,4 @@ The app has only been tested on Chrome browsers in Windows and Android devices.
 * **Bootstrap** - [MIT License](https://getbootstrap.com/docs/4.0/about/license/)
 
 ## A note on support
-This application is one of several applications that has been built by developers at Nordic Semiconductor as a demo of some particular feature or use case. It has not necessarily been thoroughly tested, so there might be unknown issues. It is hence provided as-is, without any warranty. However, in the hope that it still may be useful also for others than the ones we initially wrote it for, we've chosen to distribute it here on GitHub. Please post any questions about this project on [DevZone](https://devzone.nordicsemi.com/).
+It is provided as-is, without any warranty. 
