@@ -124,6 +124,7 @@ const updateFunc = {
 			$('#costText').text('Too Much!');
 		}
 		$('#airTemperature').text(data);
+	},
 	AIR_QUAL: data => {
 		$('#airQuality').text(data);
 	},
