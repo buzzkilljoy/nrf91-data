@@ -118,12 +118,18 @@ const updateFunc = {
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
 	TEMP: data => {
-		if (Number(data) < 40 && Number($('#temperature').text()) >= 40) {
-			showToast('Free Pizza!', '5 seconds ago', 'Your Pizza temperature is below 40 degrees and is now free of charge.','success',15000);
+		if (Number(data) > 25 && Number($('#airTemperature').text()) >= 25) {
+			showToast('Too Hot!', '5 seconds ago', 'Do something.','success',15000);
 			$('#cost').text('$0');
-			$('#costText').text('Pizza is on us');
+			$('#costText').text('Too Much!');
 		}
-		$('#temperature').text(data);
+		$('#airTemperature').text(data);
+	AIR_QUAL: data => {
+		$('#airQuality').text(data);
+	AIR_PRESS: data => {
+		$('#airPressure').text(data);
+	HUMID: data => {
+		$('#airHumidity').text(data);
 	}
 }
 
