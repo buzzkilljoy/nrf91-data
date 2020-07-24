@@ -114,6 +114,8 @@ const updateFunc = {
 			return;
 		}
 		pizzaMarker.setLatLng(pos);
+		$('#locLatitude').text(pos.lat);
+		$('#locLongitude').text(pos.lon);
 		// Pan to position and leave dots as a track
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
@@ -140,26 +142,7 @@ const updateFunc = {
 
 function startTracking() {
 	// stop previous intervals if there was an order already
-	clearInterval(counterInterval);
 	clearInterval(requestInterval);
-
-	// expect delivery in 30 minutes
-	const arrivalTime = Number(new Date()) + 1800000;
-
-	// countdown
-	counterInterval = setInterval(() => {
-		const eta = Math.trunc(((arrivalTime - new Date()) / 1000));
-		if (eta >= 0) {
-			$('#deliveryTime').text(`${Math.trunc(eta / 60)}:${(eta % 60).toString().padStart(2, '0')}`);
-			return;
-		}
-		$('#deliveryTimeText').text('Pizza is late!');
-		$('#deliveryTime').text('00:00');
-		$('#cost').text('$0');
-		$('#costText').text('Pizza is on us');
-		showToast('Free Pizza!', '1 second ago', 'Oops! The delivery is running late and the Pizza is now free of charge.','success',15000);
-		clearInterval(counterInterval);
-	}, 30);
 
 	// check nRFCloud messages from the device every 5 seconds
 	requestInterval = setInterval(async () => {
@@ -177,7 +160,7 @@ function startTracking() {
 	}, 5000);
 
 	// change to track view
-	$('#trackBtn').click();
+	//$('#trackBtn').click();
 }
 
 // Main function
@@ -193,7 +176,7 @@ $(document).ready(() => {
 	$('.view-btn').click(({ target }) => {
 		const id = target.id.replace('Btn', '');
 
-		['splash', 'start', 'track', 'settings']
+		['splash', 'map', 'sensor', 'settings']
 			.filter(key => key !== id)
 			.forEach(key => {
 				$(`#${key}View`).removeClass('d-flex').addClass('d-none');
@@ -206,7 +189,7 @@ $(document).ready(() => {
 		if (id === 'settings') {
 			loadDeviceNames();
 		}
-		if (id === 'track') {
+		if (id === 'map') {
 			leafletMap.invalidateSize();
 		}
 	});
@@ -223,8 +206,5 @@ $(document).ready(() => {
 		localStorage.setItem('tempLimit',$('#temperature-limit').val().trim());
 	});
 
-	// Start view, start tracking:
-	$('#startView a').click(({ target }) => {
-		startTracking();
-	});
+	startTracking();
 });

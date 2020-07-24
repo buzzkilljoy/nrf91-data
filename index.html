@@ -35,27 +35,60 @@
 		<div class="d-flex flex-row align-items-center">
 			<h5 class="font-weight-bold">nRF Data</h5>
 		</div>
-		<h6><a id="startBtn" class="view-btn nrf-light-blue">START</a></h6>
-		<h6><a id="trackBtn" class="view-btn nrf-light-blue">TRACK</a></h6>
+		<h6><a id="mapBtn" class="view-btn nrf-light-blue">MAP</a></h6>
+		<h6><a id="sensorBtn" class="view-btn nrf-light-blue">SENSOR</a></h6>
 		<img id="settingsBtn" src="images/settings_icon.svg" class="view-btn settings-icon">
 	</div>
 
-	<!-- Order view -->
-	<div id="startView" class="d-none align-items-center whole-width main flex-fill flex-column">
+	<!-- Map view -->
+	<div id="mapView" class="d-none flex-column flex-even">
 		<div id="leaflet-map"></div>
-		<div class="card w-75 mb-4 rounded-sm">
-			<img src="images/pizza_2.png" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">Track</h5>
-				<p class="card-text small text-muted">Tracking</p>
-				<a class="btn btn-block btn-nrf rounded-0">Start</a>
+		<div class="d-flex flex-column flex-even">
+			<div class="d-flex flex-row flex-even border-bottom">
+				<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
+					<div class="align-self-center">
+						<h6>LAT</h6>
+					</div>
+					<div class="align-self-center">
+						<h1 id="locLatitude">-</h1>
+					</div>
+					<div id="airQualityText" class="align-self-center">OK</div>
+				</div>
+				<div class="d-flex flex-column justify-content-center temperature flex-even">
+					<div class="align-self-center">
+						<h6>LON</h6>
+					</div>
+					<div class="align-self-center">
+						<h1 id="locLongitude">-</h1>
+					</div>
+					<div id="airTemperatureText" class="align-self-center">OK</div>
+				</div>
+			</div>
+			<div class="d-flex flex-row flex-even">
+				<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
+					<div class="align-self-center">
+						<h6>DIST</h6>
+					</div>
+					<div class="align-self-center">
+						<h1 id="locDistance">-</h1>
+					</div>
+					<div id="airHumidityText" class="align-self-center">OK</div>
+				</div>
+				<div class="d-flex flex-column justify-content-center temperature flex-even">
+					<div class="align-self-center">
+						<h6>TIME</h6>
+					</div>
+					<div class="align-self-center">
+						<h1 id="locTime">-</h1>
+					</div>
+					<div id="airPressureText" class="align-self-center">OK</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Track view -->
-	<div id="trackView" class="d-none flex-column flex-even">
-		<div id="leaflet-map"></div>
+	<!-- Sensor view -->
+	<div id="sensorView" class="d-none flex-column flex-even">
 		<div class="d-flex flex-column flex-even">
 			<div class="d-flex flex-row flex-even border-bottom">
 				<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
