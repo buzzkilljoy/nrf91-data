@@ -157,7 +157,7 @@ function startTracking() {
 			}
 			updateFunc[appId](data);
 		});
-	}, 5000);
+	}, 30000);
 
 	// change to track view
 	//$('#trackBtn').click();
@@ -205,6 +205,11 @@ $(document).ready(() => {
 	$('#temperature-limit').on('input', () => {
 		localStorage.setItem('tempLimit',$('#temperature-limit').val().trim());
 	});
+	
+	$('#messageId').text('0');
+	$('#messageText').text('Starting ...');
 
 	startTracking();
+	$('#messageId').text('1');
+	$('#messageText').text('Started');
 });
