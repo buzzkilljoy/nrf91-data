@@ -59,7 +59,7 @@ class NRFCloudAPI {
 	// Get messages: https://docs.api.nrfcloud.com/api/api-rest.html#nrf-cloud-device-rest-api-messages
 	getMessages(deviceId) {
 		const end = new Date();
-		const start = this.getMessages_start || new Date(end - 30000);
+		const start = this.getMessages_start || new Date(end - 10000);
 		this.getMessages_start = new Date();
 		const devIdsParam = deviceId ? `&deviceIdentifiers=${deviceId}` : '';
 		return this.get(`/messages?inclusiveStart=${start.toISOString()}&exclusiveEnd=${end.toISOString()}${devIdsParam}`);

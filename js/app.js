@@ -143,7 +143,7 @@ const updateFunc = {
 	}
 }
 
-function getMessages() {
+async function getNewMessages() {
 	const nowDate = new Date();
 
 	$('#statusMessageSmall').text('Get messages');
@@ -176,22 +176,26 @@ function getMessages() {
 			lastDate = msgDate
 			updateFunc[appId](data);
 		});
+
 }
 
 function startTracking() {
 
-	//checkMessages();
+	getNewMessages();
 
 	// stop previous intervals if there was an order already
 	clearInterval(requestInterval);
 
 	// check nRFCloud messages from the device every 5 seconds
+	requestInterval = setInterval(getNewMessages(), 5000);
+	
+	/*
 	requestInterval = setInterval(async () => {
 		$('#statusMessageSmall').text('Check messages');
-		getMessages();
-	}, 30000);
+		getNewMessages();
+	}, 5000);
+	*/
 
-	checkMessages();
 }
 
 // Main function
