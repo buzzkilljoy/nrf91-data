@@ -5,6 +5,7 @@ const leafletMap = L.map('leaflet-map').setView([63.4206897, 10.4372859], 15);
 let counterInterval;
 let requestInterval;
 let flipped = false;
+const lastDate = new Date();
 
 // Setup the map
 
@@ -54,6 +55,7 @@ L.marker([0, 0], {
 
 // Load devices from nRFCloud api and populate list in settings view
 function loadDeviceNames() {
+	$('#statusMessageSmall').text('Loading device names');
 	$('#device-list').empty().append('Refreshing device list...');
 	api.devices().then(({ items }) => {
 		if (items.length < 1) {
@@ -69,6 +71,7 @@ function loadDeviceNames() {
 			});
 			$('#device-list').append(deviceItem);
 		});
+		$('#statusMessageSmall').text('Device names loaded');
 	})
 		.catch(() => $('#device-list').empty().append('No devices found.'));
 }
@@ -146,6 +149,11 @@ function startTracking() {
 
 	// check nRFCloud messages from the device every 5 seconds
 	requestInterval = setInterval(async () => {
+		const nowDate = new Date();
+
+		$('#statusMessageSmall').text('Get messages');
+		$('#statusMessageBig').text(nowDate-lastDate);
+
 		const { items } = await api.getMessages(localStorage.getItem('deviceId') || '');
 
 		(items || [])
@@ -155,9 +163,9 @@ function startTracking() {
 				console.log('unhandled appid', appId, data);
 				return;
 			}
-			const now_date = new Date();
+			const msg_date = new Date();
 			$('#statusMessageSmall').text('New message');
-			$('#statusMessageBig').text(now_date);
+			$('#statusMessageBig').text('0');
 
 			updateFunc[appId](data);
 		});
