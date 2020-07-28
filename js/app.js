@@ -143,36 +143,40 @@ const updateFunc = {
 	}
 }
 
+function checkMessages() {
+	const nowDate = new Date();
+
+	$('#statusMessageSmall').text('Get messages');
+	$('#statusMessageBig').text(nowDate-lastDate);
+
+	const { items } = await api.getMessages(localStorage.getItem('deviceId') || '');
+
+	(items || [])
+	.map(({ message }) => message)
+	.forEach(({ appId, data }) => {
+		if (!updateFunc[appId]) {
+			console.log('unhandled appid', appId, data);
+			return;
+		}
+		const msg_date = new Date();
+		$('#statusMessageSmall').text('New message');
+		$('#statusMessageBig').text('0');
+
+		updateFunc[appId](data);
+	});
+}
+
 function startTracking() {
+	
+	checkMessages();
+	
 	// stop previous intervals if there was an order already
 	clearInterval(requestInterval);
 
 	// check nRFCloud messages from the device every 5 seconds
 	requestInterval = setInterval(async () => {
-		const nowDate = new Date();
-
-		$('#statusMessageSmall').text('Get messages');
-		$('#statusMessageBig').text(nowDate-lastDate);
-
-		const { items } = await api.getMessages(localStorage.getItem('deviceId') || '');
-
-		(items || [])
-		.map(({ message }) => message)
-		.forEach(({ appId, data }) => {
-			if (!updateFunc[appId]) {
-				console.log('unhandled appid', appId, data);
-				return;
-			}
-			const msg_date = new Date();
-			$('#statusMessageSmall').text('New message');
-			$('#statusMessageBig').text('0');
-
-			updateFunc[appId](data);
-		});
+		checkMessages();
 	}, 30000);
-
-	// change to track view
-	//$('#trackBtn').click();
 }
 
 // Main function
