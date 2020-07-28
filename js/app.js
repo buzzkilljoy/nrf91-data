@@ -2,7 +2,7 @@
 
 const api = new NRFCloudAPI(localStorage.getItem('apiKey'));
 const leafletMap = L.map('leaflet-map').setView([63.4206897, 10.4372859], 15);
-const lastDate = new Date();
+let lastDate = new Date();
 let counterInterval;
 let requestInterval;
 let flipped = false;
