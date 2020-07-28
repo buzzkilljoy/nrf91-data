@@ -179,7 +179,7 @@ function checkMessages() {
 
 function startTracking() {
 	
-	checkMessages();
+	//checkMessages();
 	
 	// stop previous intervals if there was an order already
 	clearInterval(requestInterval);
