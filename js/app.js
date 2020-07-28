@@ -6,6 +6,7 @@ let lastDate = new Date();
 let counterInterval;
 let requestInterval;
 let flipped = false;
+let msgReceived = 0;
 
 // Setup the map
 
@@ -170,8 +171,9 @@ async function getNewMessages() {
 				console.log('unhandled appid', appId, data);
 				return;
 			}
-			$('#statusMessageSmall').text('New message');
-			$('#statusMessageBig').text('0');
+			$('#statusMessageSmall').text('New message '+appId);
+			msgReceived += 1;
+			$('#statusMessageBig').text(msgReceived);
 			const msgDate = new Date();
 			lastDate = msgDate
 			updateFunc[appId](data);
