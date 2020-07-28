@@ -151,6 +151,7 @@ function checkMessages() {
 
 	const { items } = await api.getMessages(localStorage.getItem('deviceId') || '');
 
+	/*
 	if (items == undefined || items.length == 0) {
 		const msgDate = new Date();
 		$('#statusMessageSmall').text('No messages');
@@ -159,6 +160,7 @@ function checkMessages() {
 
 		return;
 	}
+	*/
 
 	(items || [])
 	.map(({ message }) => message)
