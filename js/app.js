@@ -151,6 +151,15 @@ function checkMessages() {
 
 	const { items } = await api.getMessages(localStorage.getItem('deviceId') || '');
 
+	if (items == undefined || items.length == 0) {
+		const msgDate = new Date();
+		$('#statusMessageSmall').text('No messages');
+		date_diff = (msgDate-lastDate)/1000;
+		$('#statusMessageBig').text(date_diff);
+
+		return;
+	}
+
 	(items || [])
 	.map(({ message }) => message)
 	.forEach(({ appId, data }) => {
@@ -158,10 +167,10 @@ function checkMessages() {
 			console.log('unhandled appid', appId, data);
 			return;
 		}
-		const msg_date = new Date();
 		$('#statusMessageSmall').text('New message');
 		$('#statusMessageBig').text('0');
-
+		const msgDate = new Date();
+		lastDate = msgDate
 		updateFunc[appId](data);
 	});
 }
@@ -176,7 +185,7 @@ function startTracking() {
 	// check nRFCloud messages from the device every 5 seconds
 	requestInterval = setInterval(async () => {
 		checkMessages();
-	}, 30000);
+	}, 5000);
 }
 
 // Main function
