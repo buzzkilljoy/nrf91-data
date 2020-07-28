@@ -33,11 +33,11 @@ L.marker([0, 0], {
 		iconAnchor: [20, 18]
 	})
 })
-.setLatLng({
-	lat: Number(localStorage.getItem('destLat') || '59.919629'),
-	lon: Number(localStorage.getItem('destLon') || '10.687080'),
-})
-.addTo(leafletMap);
+	.setLatLng({
+		lat: Number(localStorage.getItem('destLat') || '59.919629'),
+		lon: Number(localStorage.getItem('destLon') || '10.687080'),
+	})
+	.addTo(leafletMap);
 
 // Create marker for BOSCH
 L.marker([0, 0], {
@@ -47,11 +47,11 @@ L.marker([0, 0], {
 		iconAnchor: [40, 9]
 	})
 })
-.setLatLng({
-	lat: Number(localStorage.getItem('boschLat') || '59.914682'),
-	lon: Number(localStorage.getItem('boschLon') || '10.798602'),
-})
-.addTo(leafletMap);
+	.setLatLng({
+		lat: Number(localStorage.getItem('boschLat') || '59.914682'),
+		lon: Number(localStorage.getItem('boschLon') || '10.798602'),
+	})
+	.addTo(leafletMap);
 
 // Load devices from nRFCloud api and populate list in settings view
 function loadDeviceNames() {
@@ -143,7 +143,7 @@ const updateFunc = {
 	}
 }
 
-function checkMessages() {
+function getMessages() {
 	const nowDate = new Date();
 
 	$('#statusMessageSmall').text('Get messages');
@@ -164,33 +164,33 @@ function checkMessages() {
 	*/
 
 	(items || [])
-	.map(({ message }) => message)
-	.forEach(({ appId, data }) => {
-		if (!updateFunc[appId]) {
-			console.log('unhandled appid', appId, data);
-			return;
-		}
-		$('#statusMessageSmall').text('New message');
-		$('#statusMessageBig').text('0');
-		const msgDate = new Date();
-		lastDate = msgDate
-		updateFunc[appId](data);
-	});
+		.map(({ message }) => message)
+		.forEach(({ appId, data }) => {
+			if (!updateFunc[appId]) {
+				console.log('unhandled appid', appId, data);
+				return;
+			}
+			$('#statusMessageSmall').text('New message');
+			$('#statusMessageBig').text('0');
+			const msgDate = new Date();
+			lastDate = msgDate
+			updateFunc[appId](data);
+		});
 }
 
 function startTracking() {
-	
+
 	//checkMessages();
-	
+
 	// stop previous intervals if there was an order already
 	clearInterval(requestInterval);
 
 	// check nRFCloud messages from the device every 5 seconds
 	requestInterval = setInterval(async () => {
 		$('#statusMessageSmall').text('Check messages');
-		checkMessages();
-	}, 5000);
-	
+		getMessages();
+	}, 30000);
+
 	checkMessages();
 }
 
@@ -231,12 +231,12 @@ $(document).ready(() => {
 		localStorage.setItem('apiKey', api.accessToken);
 		loadDeviceNames();
 	});
-	
+
 	// Settings view, temp limit change:
 	$('#temperature-limit').on('input', () => {
 		localStorage.setItem('tempLimit',$('#temperature-limit').val().trim());
 	});
-	
+
 	$('#statusMessageSmall').text('Start tracking');
 	$('#statusMessageBig').text('STARTING');
 
