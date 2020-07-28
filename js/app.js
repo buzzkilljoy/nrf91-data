@@ -187,7 +187,7 @@ function startTracking() {
 	clearInterval(requestInterval);
 
 	// check nRFCloud messages from the device every 5 seconds
-	requestInterval = setInterval(getNewMessages, 5000);
+	requestInterval = setInterval(getNewMessages, 30000);
 	
 	/*
 	requestInterval = setInterval(async () => {
