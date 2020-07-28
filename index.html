@@ -1,179 +1,179 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Leaflet -->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
-	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+		<!-- Leaflet -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+		<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
 
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<!-- ...Bootstrap -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<!-- ...Bootstrap -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/toast.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/toast.css">
 
-	<title>nRF Data</title>
-</head>
+		<title>nRF Data</title>
+	</head>
 
-<body class="desktop-friendly-size black whole-screen d-flex flex-column">
+	<body class="desktop-friendly-size black whole-screen d-flex flex-column">
 
-	<!-- Splash view -->
-	<div id="splashView" class="d-flex flex-column justify-content-center align-items-center flex-fill">
-		<img id="mainlogo" src="images/nrfPizza_logo.png">
-	</div>
-
-	<!-- Top bar -->
-	<div class="d-flex flex-row menu align-items-center justify-content-between pr-3 pl-3 fixed-top shadow desktop-friendly-size">
-		<div class="d-flex flex-row align-items-center">
-			<h5 class="font-weight-bold">nRF Data</h5>
+		<!-- Splash view -->
+		<div id="splashView" class="d-flex flex-column justify-content-center align-items-center flex-fill">
+			<img id="mainlogo" src="images/nrfPizza_logo.png">
 		</div>
-		<h6><a id="mapBtn" class="view-btn nrf-light-blue">MAP</a></h6>
-		<h6><a id="sensorBtn" class="view-btn nrf-light-blue">SENSOR</a></h6>
-		<img id="settingsBtn" src="images/settings_icon.svg" class="view-btn settings-icon">
-	</div>
 
-	<!-- Map view -->
-	<div id="mapView" class="d-none flex-column flex-even">
-		<div id="leaflet-map"></div>
-		<div class="d-flex flex-column flex-even">
-			<div class="d-flex flex-row flex-even border-bottom">
-				<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
-					<div class="align-self-center">
-						<h6>LAT</h6>
-					</div>
-					<div class="align-self-center">
-						<h1 id="locLatitude">-</h1>
-					</div>
-					<div id="airQualityText" class="align-self-center">OK</div>
-				</div>
+		<!-- Top bar -->
+		<div class="d-flex flex-row menu align-items-center justify-content-between pr-3 pl-3 fixed-top shadow desktop-friendly-size">
+			<div class="d-flex flex-row align-items-center">
+				<h5 class="font-weight-bold">nRF Data</h5>
 			</div>
-			<div class="d-flex flex-row flex-even border-bottom">
-				<div class="d-flex flex-column justify-content-center temperature flex-even">
-					<div class="align-self-center">
-						<h6>LON</h6>
-					</div>
-					<div class="align-self-center">
-						<h1 id="locLongitude">-</h1>
-					</div>
-					<div id="airTemperatureText" class="align-self-center">OK</div>
-				</div>
-			</div>
+			<h6><a id="mapBtn" class="view-btn nrf-light-blue">MAP</a></h6>
+			<h6><a id="sensorBtn" class="view-btn nrf-light-blue">SENSOR</a></h6>
+			<img id="settingsBtn" src="images/settings_icon.svg" class="view-btn settings-icon">
 		</div>
-	</div>
 
-	<!-- Sensor view -->
-	<div id="sensorView" class="d-none flex-column flex-even">
-		<div class="d-flex flex-column flex-even">
-			<div class="d-flex flex-row flex-even border-bottom">
-				<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
-					<div class="align-self-center">
-						<h6>AIR QUALITY</h6>
+		<!-- Map view -->
+		<div id="mapView" class="d-none flex-column flex-even">
+			<div id="leaflet-map"></div>
+			<div class="d-flex flex-column flex-even">
+				<div class="d-flex flex-row flex-even border-bottom">
+					<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
+						<div class="align-self-center">
+							<h6>LAT</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="locLatitude">-</h1>
+						</div>
+						<div id="airQualityText" class="align-self-center">OK</div>
 					</div>
-					<div class="align-self-center">
-						<h1 id="airQuality">-</h1>
-					</div>
-					<div id="airQualityText" class="align-self-center">OK</div>
 				</div>
-				<div class="d-flex flex-column justify-content-center temperature flex-even">
-					<div class="align-self-center">
-						<h6>TEMPERATURE &#176;C</h6>
+				<div class="d-flex flex-row flex-even border-bottom">
+					<div class="d-flex flex-column justify-content-center temperature flex-even">
+						<div class="align-self-center">
+							<h6>LON</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="locLongitude">-</h1>
+						</div>
+						<div id="airTemperatureText" class="align-self-center">OK</div>
 					</div>
-					<div class="align-self-center">
-						<h1 id="airTemperature">-</h1>
-					</div>
-					<div id="airTemperatureText" class="align-self-center">OK</div>
-				</div>
-			</div>
-			<div class="d-flex flex-row flex-even">
-				<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
-					<div class="align-self-center">
-						<h6>HUMIDITY</h6>
-					</div>
-					<div class="align-self-center">
-						<h1 id="airHumidity">-</h1>
-					</div>
-					<div id="airHumidityText" class="align-self-center">OK</div>
-				</div>
-				<div class="d-flex flex-column justify-content-center temperature flex-even">
-					<div class="align-self-center">
-						<h6>AIR PRESSURE</h6>
-					</div>
-					<div class="align-self-center">
-						<h1 id="airPressure">-</h1>
-					</div>
-					<div id="airPressureText" class="align-self-center">OK</div>
-				</div>
-			</div>
-			<div class="d-flex flex-row flex-even">
-				<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
-					<div class="align-self-center">
-						<h6>STATUS</h6>
-					</div>
-					<div class="align-self-center">
-						<h1 id="statusMessageBig">-</h1>
-					</div>
-					<div id="statusMessageSmall" class="align-self-center">-</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Settings view -->
-	<div id="settingsView" class="d-none align-items-center whole-width main flex-fill flex-column desktop-friendly-size">
-		<div class="card w-75 mb-4 rounded-sm top-card">
-			<div class="card-body">
-				<h5 class="card-title">Temperature Limit</h5>
-				<label for="temperature-limit">Limit</label>
-				<textarea
-					id="temperature-limit"
-					class="form-control mb-3"
-					aria-label="With textarea"
-					placeholder="25"
-				></textarea>
+		<!-- Sensor view -->
+		<div id="sensorView" class="d-none flex-column flex-even">
+			<div class="d-flex flex-column flex-even">
+				<div class="d-flex flex-row flex-even border-bottom">
+					<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
+						<div class="align-self-center">
+							<h6>AIR QUALITY</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="airQuality">-</h1>
+						</div>
+						<div id="airQualityText" class="align-self-center">OK</div>
+					</div>
+					<div class="d-flex flex-column justify-content-center temperature flex-even">
+						<div class="align-self-center">
+							<h6>TEMPERATURE &#176;C</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="airTemperature">-</h1>
+						</div>
+						<div id="airTemperatureText" class="align-self-center">OK</div>
+					</div>
+				</div>
+				<div class="d-flex flex-row flex-even">
+					<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
+						<div class="align-self-center">
+							<h6>HUMIDITY</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="airHumidity">-</h1>
+						</div>
+						<div id="airHumidityText" class="align-self-center">OK</div>
+					</div>
+					<div class="d-flex flex-column justify-content-center temperature flex-even">
+						<div class="align-self-center">
+							<h6>AIR PRESSURE</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="airPressure">-</h1>
+						</div>
+						<div id="airPressureText" class="align-self-center">OK</div>
+					</div>
+				</div>
+				<div class="d-flex flex-row flex-even">
+					<div class="d-flex flex-column justify-content-center temperature flex-even border-right">
+						<div class="align-self-center">
+							<h6>STATUS</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="statusMessageBig">-</h1>
+						</div>
+						<div id="statusMessageSmall" class="align-self-center">-</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="card w-75 mb-4 rounded-sm top-card">
-			<div class="card-body">
-				<h5 class="card-title">Thingy:91 Credentials</h5>
-				<label for="api-key">API Key</label>
-				<textarea
-					id="api-key"
-					class="form-control mb-3"
-					aria-label="With textarea"
-					placeholder="3ce36d0b1b69a0346672a2e9be29a7645688c9f9"
-				></textarea>
-				<label for="device-name">Device Name</label>
-				<div id="device-list" class="list-group" role="tablist"></div>
+
+		<!-- Settings view -->
+		<div id="settingsView" class="d-none align-items-center whole-width main flex-fill flex-column desktop-friendly-size">
+			<div class="card w-75 mb-4 rounded-sm top-card">
+				<div class="card-body">
+					<h5 class="card-title">Temperature Limit</h5>
+					<label for="temperature-limit">Limit</label>
+					<textarea
+						id="temperature-limit"
+						class="form-control mb-3"
+						aria-label="With textarea"
+						placeholder="25"
+						></textarea>
+				</div>
 			</div>
-		</div>
-		<div class="card w-75 mb-4 rounded-sm ">
-			<div class="card-body">
-				<p class="card-text small text-muted">
+			<div class="card w-75 mb-4 rounded-sm top-card">
+				<div class="card-body">
+					<h5 class="card-title">Thingy:91 Credentials</h5>
+					<label for="api-key">API Key</label>
+					<textarea
+						id="api-key"
+						class="form-control mb-3"
+						aria-label="With textarea"
+						placeholder="3ce36d0b1b69a0346672a2e9be29a7645688c9f9"
+						></textarea>
+					<label for="device-name">Device Name</label>
+					<div id="device-list" class="list-group" role="tablist"></div>
+				</div>
+			</div>
+			<div class="card w-75 mb-4 rounded-sm ">
+				<div class="card-body">
+					<p class="card-text small text-muted">
 					This web app demonstrates a connection to the nRF Connect for Cloud REST API.
 					In order to use the app you must find and enter the API Key and Device Name.
-				</p>
-				<p class="card-text small text-muted">
+					</p>
+					<p class="card-text small text-muted">
 					Please refer to the <em>Getting Started Guide</em> in the 
 					<a href="https://nrfcloud.com/#/docs" class="nrf-blue">
 						nRF Connect for Cloud docs
 					</a>
 					for more details.
-				</p>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- App specific JavaScript -->
-	<script src="js/toast.min.js"></script>
-	<script src="js/cloud-api.js" crossorigin="anonymous"></script>
-	<script src="js/app.js"></script>
-</body>
+		<!-- App specific JavaScript -->
+		<script src="js/toast.min.js"></script>
+		<script src="js/cloud-api.js" crossorigin="anonymous"></script>
+		<script src="js/app.js"></script>
+	</body>
 </html>

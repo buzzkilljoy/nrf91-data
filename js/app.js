@@ -2,10 +2,10 @@
 
 const api = new NRFCloudAPI(localStorage.getItem('apiKey'));
 const leafletMap = L.map('leaflet-map').setView([63.4206897, 10.4372859], 15);
+const lastDate = new Date();
 let counterInterval;
 let requestInterval;
 let flipped = false;
-const lastDate = new Date();
 
 // Setup the map
 
@@ -147,7 +147,8 @@ function checkMessages() {
 	const nowDate = new Date();
 
 	$('#statusMessageSmall').text('Get messages');
-	$('#statusMessageBig').text(nowDate-lastDate);
+	date_diff = (nowDate-lastDate)/1000;
+	$('#statusMessageBig').text(date_diff);
 
 	const { items } = await api.getMessages(localStorage.getItem('deviceId') || '');
 
@@ -186,8 +187,11 @@ function startTracking() {
 
 	// check nRFCloud messages from the device every 5 seconds
 	requestInterval = setInterval(async () => {
+		$('#statusMessageSmall').text('Check messages');
 		checkMessages();
 	}, 5000);
+	
+	checkMessages();
 }
 
 // Main function
@@ -237,6 +241,7 @@ $(document).ready(() => {
 	$('#statusMessageBig').text('STARTING');
 
 	startTracking();
+
 	$('#statusMessageSmall').text('Tracking started');
 	$('#statusMessageBig').text('STARTED');
 });
