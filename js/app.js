@@ -155,6 +155,10 @@ function startTracking() {
 				console.log('unhandled appid', appId, data);
 				return;
 			}
+			const now_date = new Date();
+			$('#statusMessageSmall').text('New message');
+			$('#statusMessageBig').text(now_date);
+
 			updateFunc[appId](data);
 		});
 	}, 30000);
@@ -206,10 +210,10 @@ $(document).ready(() => {
 		localStorage.setItem('tempLimit',$('#temperature-limit').val().trim());
 	});
 	
-	$('#messageId').text('0');
-	$('#messageText').text('Starting ...');
+	$('#statusMessageSmall').text('Start tracking');
+	$('#statusMessageBig').text('STARTING');
 
 	startTracking();
-	$('#messageId').text('1');
-	$('#messageText').text('Started');
+	$('#statusMessageSmall').text('Tracking started');
+	$('#statusMessageBig').text('STARTED');
 });
